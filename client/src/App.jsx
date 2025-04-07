@@ -1,28 +1,32 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
 import Footer from './components/Footer';
+import Register from './components/register';
+import Login from './components/Login';
 
 function App() {
   return (
-    <Router>
-      <div className="min-h-screen flex flex-col">
-        <Navbar />
-        <main className="flex-grow">
-          <Routes>
-            <Route path="/" element={
+    <div className="min-h-screen flex flex-col">
+      <Navbar />
+      <main className="flex-grow">
+        <Routes>
+          <Route
+            path="/"
+            element={
               <>
                 <Hero />
                 <About />
               </>
-            } />
-            {/* Add more routes here */}
-          </Routes>
-        </main>
-        <Footer />
-      </div>
-    </Router>
+            }
+          />
+          <Route path="/auth/register" element={<Register />} />
+          <Route path="/auth/signin" element={<Login />} />
+        </Routes>
+      </main>
+      <Footer />
+    </div>
   );
 }
 

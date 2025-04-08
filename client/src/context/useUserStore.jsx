@@ -16,6 +16,7 @@ export const useUserStore = create((set) => ({
     try {
       const res = await axios.post(`${baseUrl}/auth/register`, formData);
       toast.success(res.data.message || "Registration successful");
+      
       set({ user: res.data.user, loading: false });
       localStorage.setItem('user', JSON.stringify(res.data.user));
     } catch (err) {
@@ -36,6 +37,7 @@ export const useUserStore = create((set) => ({
 
       if (res.data.success === true) {
         toast.success(res.data.message || "Login successful");
+        console.log(res.data);
         set({ user: res.data.user, loading: false });
         localStorage.setItem('user', JSON.stringify(res.data.user));
       } else {

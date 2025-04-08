@@ -70,42 +70,34 @@ const Navbar = () => {
                 </Link>
               </>
             ) : (
-              <div className="relative">
-                {/* Profile Icon with Name */}
-                <button
-                  className="flex items-center space-x-2 hover:text-[#FF9A00] transition-colors"
-                  onClick={toggleDropdown}
-                >
-                  <img
-                    src="/icons8.png" // Replace with your profile icon
-                    alt="Profile"
-                    className="w-8 h-8 rounded-full"
-                  />
-                  <span>{user.firstName}</span> {/* Display user name */}
-                </button>
+              <div className="relative group">
+  {/* Profile Icon with Name */}
+  <div className="flex items-center space-x-2 hover:text-[#FF9A00] transition-colors cursor-pointer">
+    <img
+      src="/icons8.png"
+      alt="Profile"
+      className="w-8 h-8 rounded-full"
+    />
+    <span>{user.firstName}</span>
+  </div>
 
-                {/* Dropdown Menu */}
-                <AnimatePresence>
-                  {dropdownOpen && (
-                    <motion.div
-                      className="absolute right-0 mt-2 w-40 bg-white text-[#222222] shadow-md rounded-md"
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                    >
-                      <div className="py-2 px-4 hover:bg-[#FF9A00] hover:text-white cursor-pointer">
-                        <Link to="/profile">Profile</Link>
-                      </div>
-                      <div
-                        className="py-2 px-4 hover:bg-[#FF9A00] hover:text-white cursor-pointer"
-                        onClick={logout}
-                      >
-                        Logout
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
+  {/* Dropdown shown on hover */}
+  <div className="absolute right-0 mt-2 w-40 bg-white text-[#222222] shadow-md rounded-md hidden group-hover:block z-50">
+    <Link
+      to="/profile"
+      className="block py-2 px-4 hover:bg-[#FF9A00] hover:text-white transition-colors"
+    >
+      Profile
+    </Link>
+    <div
+      onClick={logout}
+      className="py-2 px-4 hover:bg-[#FF9A00] hover:text-white cursor-pointer transition-colors"
+    >
+      Logout
+    </div>
+  </div>
+</div>
+
             )}
           </div>
 

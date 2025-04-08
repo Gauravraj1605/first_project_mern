@@ -5,8 +5,23 @@ import About from './components/About';
 import Footer from './components/Footer';
 import Register from './components/register';
 import Login from './components/Login';
+import { Loader } from 'lucide-react';
+import { useUserStore } from './context/useUserStore';
+import { useEffect } from 'react';
 
 function App() {
+
+  const checkAuth = useUserStore((state) => state.checkAuth);
+
+  useEffect(() => {
+    checkAuth();
+  }, []);
+
+  // if(checkAuth){
+  //   return <Loader/>
+  // }
+
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />

@@ -169,7 +169,7 @@ export default function HeroCarousel() {
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="mt-10">
             <a
               href="/signup"
-              className="px-8 py-3 bg-[#FF9A00] text-[#222222] font-bold rounded-md hover:bg-opacity-90 transition-all duration-300"
+              className="px-8 py-3 bg-[#FF9A00] text-[#222222] font-bold hover:bg-opacity-90 transition-all duration-300 hover:bg-stone-500 "
             >
               Get Started
             </a>

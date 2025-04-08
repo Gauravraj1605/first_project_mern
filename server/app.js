@@ -9,8 +9,13 @@ const app = express();
 import authRoutes from './route/auth.route.js';
 
 //middlewares will be added here
+const allowedOrigin = process.env.CLIENT_URL || 'http://localhost:5173';
 
-app.use(cors()); // Enable CORS for all requests
+app.use(cors({
+  origin: allowedOrigin,
+  credentials: true,
+}));
+
 
 app.use(express.json());
 app.use(bodyParser.json());

@@ -1,15 +1,24 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
+import { useUserStore } from "../context/useUserStore";
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false); // For mobile menu
+  const [dropdownOpen, setDropdownOpen] = useState(false); // For profile dropdown
+  const { user, logout } = useUserStore(); // Get user info and logout function
+
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
 
   return (
     <nav className="fixed top-0 left-0 w-full bg-transparent text-[#222222] z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-14">
+      {/* Black overlay with 0.5 opacity */}
+      <div className="absolute inset-0 bg-black opacity-50 z-0"></div>
 
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="flex justify-between items-center h-14">
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link to="/" className="text-2xl text-white font-bold ">
@@ -19,17 +28,85 @@ const Navbar = () => {
 
           {/* Nav Items - Center */}
           <div className="hidden md:flex space-x-8 text-white">
-            <Link to="/" className="hover:text-[#FF9A00] transition-colors">Home</Link>
-            <Link to="/about" className="hover:text-[#FF9A00] transition-colors">About</Link>
-            <Link to="/market" className="hover:text-[#FF9A00] transition-colors">Market</Link>
-            <Link to="/contact" className="hover:text-[#FF9A00] transition-colors">Contact</Link>
+            <Link to="/" className="hover:text-[#FF9A00] transition-colors">
+              Home
+            </Link>
+            <Link
+              to="/about"
+              className="hover:text-[#FF9A00] transition-colors"
+            >
+              About
+            </Link>
+            <Link
+              to="/market"
+              className="hover:text-[#FF9A00] transition-colors"
+            >
+              Market
+            </Link>
+            <Link
+              to="/contact"
+              className="hover:text-[#FF9A00] transition-colors"
+            >
+              Contact
+            </Link>
           </div>
 
-          {/* Auth Buttons - Right */}
+          {/* Auth / Profile Button - Right */}
           <div className="hidden md:flex items-center space-x-4 text-white">
-            <Link to="/auth/register" className="hover:text-[#FF9A00] transition-colors">Register</Link>
-            <span className="text-sm">/</span>
-            <Link to="/auth/signin" className="hover:text-[#FF9A00] transition-colors">Signin</Link>
+            {!user ? (
+              <>
+                <Link
+                  to="/auth/register"
+                  className="hover:text-[#FF9A00] transition-colors"
+                >
+                  Register
+                </Link>
+                <span className="text-sm">/</span>
+                <Link
+                  to="/auth/signin"
+                  className="hover:text-[#FF9A00] transition-colors"
+                >
+                  Signin
+                </Link>
+              </>
+            ) : (
+              <div className="relative">
+                {/* Profile Icon with Name */}
+                <button
+                  className="flex items-center space-x-2 hover:text-[#FF9A00] transition-colors"
+                  onClick={toggleDropdown}
+                >
+                  <img
+                    src="/icons8.png" // Replace with your profile icon
+                    alt="Profile"
+                    className="w-8 h-8 rounded-full"
+                  />
+                  <span>{user.firstName}</span> {/* Display user name */}
+                </button>
+
+                {/* Dropdown Menu */}
+                <AnimatePresence>
+                  {dropdownOpen && (
+                    <motion.div
+                      className="absolute right-0 mt-2 w-40 bg-white text-[#222222] shadow-md rounded-md"
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                    >
+                      <div className="py-2 px-4 hover:bg-[#FF9A00] hover:text-white cursor-pointer">
+                        <Link to="/profile">Profile</Link>
+                      </div>
+                      <div
+                        className="py-2 px-4 hover:bg-[#FF9A00] hover:text-white cursor-pointer"
+                        onClick={logout}
+                      >
+                        Logout
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            )}
           </div>
 
           {/* Hamburger - Mobile */}
@@ -76,13 +153,65 @@ const Navbar = () => {
             exit={{ opacity: 0, y: -20 }}
           >
             <div className="px-4 pt-4 pb-6 space-y-4">
-              <Link to="/" className="block text-[#222222] hover:text-[#FF9A00]">Home</Link>
-              <Link to="/about" className="block text-[#222222] hover:text-[#FF9A00]">About</Link>
-              <Link to="/market" className="block text-[#222222] hover:text-[#FF9A00]">Market</Link>
-              <Link to="/contact" className="block text-[#222222] hover:text-[#FF9A00]">Contact</Link>
+              <Link
+                to="/"
+                className="block text-[#222222] hover:text-[#FF9A00]"
+              >
+                Home
+              </Link>
+              <Link
+                to="/about"
+                className="block text-[#222222] hover:text-[#FF9A00]"
+              >
+                About
+              </Link>
+              <Link
+                to="/market"
+                className="block text-[#222222] hover:text-[#FF9A00]"
+              >
+                Market
+              </Link>
+              <Link
+                to="/contact"
+                className="block text-[#222222] hover:text-[#FF9A00]"
+              >
+                Contact
+              </Link>
               <hr />
-              <Link to="/register" className="block text-[#222222] hover:text-[#FF9A00]">Register</Link>
-              <Link to="/signin" className="block text-[#222222] hover:text-[#FF9A00]">Signin</Link>
+              {!user ? (
+                <>
+                  <Link
+                    to="/auth/register"
+                    className="block text-[#222222] hover:text-[#FF9A00]"
+                  >
+                    Register
+                  </Link>
+                  <Link
+                    to="/auth/signin"
+                    className="block text-[#222222] hover:text-[#FF9A00]"
+                  >
+                    Signin
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <Link
+                    to="/profile"
+                    className="block text-[#222222] hover:text-[#FF9A00]"
+                  >
+                    Profile
+                  </Link>
+                  <div
+                    className="block text-[#222222] hover:text-[#FF9A00] cursor-pointer"
+                    onClick={() => {
+                      logout();
+                      setIsOpen(false); // Close mobile menu after logout
+                    }}
+                  >
+                    Logout
+                  </div>
+                </>
+              )}
             </div>
           </motion.div>
         )}

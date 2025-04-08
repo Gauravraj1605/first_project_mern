@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from "framer-motion"
 import { Link, useNavigate } from "react-router-dom"
 import axios from "axios"
 import { Eye, EyeOff } from "lucide-react"
+import { useUserStore } from "../context/useUserStore"
+import toast from "react-hot-toast"
 
 // Construction quotes for the carousel
 const quotes = [
@@ -27,14 +29,15 @@ const quotes = [
 
 // Background images for carousel
 const images = [
-  "/placeholder.svg?height=800&width=600",
-  "/placeholder.svg?height=800&width=600",
-  "/placeholder.svg?height=800&width=600",
+  "https://res.cloudinary.com/dvu5gqlxn/image/upload/v1744070686/samples/coffee.jpg",
+  "/hero2.jpg",
+  "/hero3.jpg",
 ]
 
 const Login = () => {
     const navigate = useNavigate();
-    const baseUrl = "http://localhost:5000/api"
+    const { login, loading:loginLoading } = useUserStore();
+    
   // Form state
   const [formData, setFormData] = useState({
     emailOrMobile: "",
@@ -120,13 +123,9 @@ const Login = () => {
       }
 
       // Replace with your actual API endpoint
-      const response = await axios.post(`${baseUrl}/auth/login`, loginData)
+      const response = login(loginData);
+      navigate("/")
 
-      // Handle successful login
-      console.log("Login successful:", response.data)
-
-      
-      navigate("/");
     } catch (error) {
       // Handle login error
       console.error("Login error:", error.response?.data || error.message)
@@ -185,7 +184,7 @@ const Login = () => {
               transition={{ duration: 0.5 }}
               className="text-center max-w-md"
             >
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-[#FF9A00]">BongBaba Academy</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-[#FF9A00]">Oul corporation</h2>
               <p className="text-xl md:text-2xl font-medium mb-4">{quotes[currentQuoteIndex].text}</p>
               <p className="text-sm md:text-base mb-4 italic">{quotes[currentQuoteIndex].translation}</p>
               <p className="text-sm text-[#FF9A00]">{quotes[currentQuoteIndex].author}</p>
@@ -400,7 +399,7 @@ const Login = () => {
           <div className="text-center mt-8">
             <p className="text-sm text-gray-600">
               Don't have an account?{" "}
-              <Link to="/register" className="font-medium text-[#FF9A00] hover:underline">
+              <Link to="/auth/register" className="font-medium text-[#FF9A00] hover:underline">
                 Register Now
               </Link>
             </p>

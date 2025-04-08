@@ -9,7 +9,7 @@ const app = express();
 import authRoutes from './route/auth.route.js';
 
 //middlewares will be added here
-const allowedOrigin = process.env.CLIENT_URL || 'http://localhost:5173';
+const allowedOrigin = process.env.CLIENT_URL;
 
 app.use(cors({
   origin: allowedOrigin,

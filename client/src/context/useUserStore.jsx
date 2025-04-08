@@ -4,7 +4,7 @@ import axios from 'axios';
 import { toast } from 'react-hot-toast';
 
 const baseUrl = "http://localhost:5000/api"; // Update this with env in production
-
+// const baseUrl = "https://oul-corporation-backend.onrender.com"
 export const useUserStore = create((set) => ({
   user: JSON.parse(localStorage.getItem('user')) || null,
   loading: false,

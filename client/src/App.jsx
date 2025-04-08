@@ -9,6 +9,7 @@ import { Loader } from 'lucide-react';
 import { useUserStore } from './context/useUserStore';
 import { useEffect } from 'react';
 import Gallery from './components/Gallery';
+import Profile from './components/Profile';
 
 function App() {
 
@@ -18,15 +19,10 @@ function App() {
     checkAuth();
   }, []);
 
-  // if(checkAuth){
-  //   return <Loader/>
-  // }
-
-
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      <main className="flex-grow">
+      <main className="flex-grow pt-14">
         <Routes>
           <Route
             path="/"
@@ -40,6 +36,7 @@ function App() {
           />
           <Route path="/auth/register" element={<Register />} />
           <Route path="/auth/signin" element={<Login />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
       </main>
       <Footer />

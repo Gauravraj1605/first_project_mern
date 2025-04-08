@@ -124,6 +124,7 @@ const Login = () => {
 
       // Replace with your actual API endpoint
       const response = login(loginData);
+      //console.log(response.data);
       navigate("/")
 
     } catch (error) {

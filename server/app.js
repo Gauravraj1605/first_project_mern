@@ -9,12 +9,24 @@ const app = express();
 import authRoutes from './route/auth.route.js';
 
 //middlewares will be added here
-const allowedOrigin = process.env.CLIENT_URL;
+// const allowedOrigin = process.env.CLIENT_URL;
 
-app.use(cors({
-  origin: allowedOrigin,
-  credentials: true,
-}));
+const allowedOrigins = ['https://oul-corporation-main.onrender.com'];
+
+// CORS options
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true, // Enable sending cookies and credentials if needed
+};
+
+// Use the cors middleware with the specified options
+app.use(cors(corsOptions));
 
 
 app.use(express.json());

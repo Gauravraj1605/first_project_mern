@@ -8,6 +8,7 @@ import Login from './components/Login';
 import { Loader } from 'lucide-react';
 import { useUserStore } from './context/useUserStore';
 import { useEffect } from 'react';
+import Gallery from './components/Gallery';
 
 function App() {
 
@@ -33,6 +34,7 @@ function App() {
               <>
                 <Hero />
                 <About />
+                <Gallery/>
               </>
             }
           />

@@ -3,7 +3,7 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
 import Footer from './components/Footer';
-import Register from './components/register';
+import Register from './components/Register';
 import Login from './components/Login';
 import { Loader } from 'lucide-react';
 import { useUserStore } from './context/useUserStore';

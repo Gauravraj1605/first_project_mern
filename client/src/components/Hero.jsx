@@ -6,25 +6,25 @@ import { ChevronUp, ChevronDown } from "lucide-react";
 const slides = [
   {
     id: 1,
-    image: "/hero1.jpg",
+    image: "https://res.cloudinary.com/dvu5gqlxn/image/upload/v1744121483/pexels-binyaminmellish-106399_f4grvt.jpg",
     quote: "We don't build structures, we build dreams that stand the test of time.",
     author: "BongBaba Construction",
   },
   {
     id: 2,
-    image: "/hero2.jpg",
+    image: "https://res.cloudinary.com/dvu5gqlxn/image/upload/v1744070895/hero3_hyvd0n.jpg",
     quote: "Quality means doing it right when no one is looking.",
     author: "Henry Ford",
   },
   {
     id: 3,
-    image: "/hero3.jpg",
+    image: "https://res.cloudinary.com/dvu5gqlxn/image/upload/v1744070895/hero4_m2b9wx.jpg",
     quote: "We shape our buildings; thereafter, they shape us.",
     author: "Winston Churchill",
   },
   {
     id: 4,
-    image: "/hero4.jpg",
+    image: "https://res.cloudinary.com/dvu5gqlxn/image/upload/v1744070895/hero1_gwfyvf.jpg",
     quote: "Great buildings, like great mountains, are the work of centuries.",
     author: "Victor Hugo",
   },
@@ -160,7 +160,7 @@ export default function HeroCarousel() {
         >
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-6">
             <span className="block">Welcome to</span>
-            <span className="block text-[#FF9A00] font-ba">Our BongBaba Academy</span>
+            <span className="block text-[#FF9A00] font-ba">Oul Corporation</span>
           </h1>
 
           <blockquote className="mt-8 text-xl sm:text-2xl italic">"{slides[currentIndex].quote}"</blockquote>
@@ -168,8 +168,8 @@ export default function HeroCarousel() {
 
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="mt-10">
             <a
-              href="/signup"
-              className="px-8 py-3 bg-[#FF9A00] text-[#222222] font-bold hover:bg-opacity-90 transition-all duration-300 hover:bg-stone-500 "
+              href="/auth/register"
+              className="px-8 py-3 bg-[#FF9A00] text-[#222222] font-bold hover:bg-opacity-90 transition-all duration-300 hover:bg-stone-200 "
             >
               Get Started
             </a>

@@ -136,7 +136,7 @@ const navigate = useNavigate();
       console.log("Registration successful:", response.data);
       
       // Redirect to login or show success message
-      navigate("/auth/login");
+      navigate("/auth/signin");
       
     } catch (error) {
       // Handle registration error

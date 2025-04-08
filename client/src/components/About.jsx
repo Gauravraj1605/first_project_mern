@@ -1,5 +1,3 @@
-"use client"
-
 import { useEffect, useRef, useState } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { Star, StarHalf } from "lucide-react"
@@ -48,7 +46,7 @@ const testimonials = [
     rating: 5,
     review:
       "BongBaba Academy has exceeded our expectations in every project. Their attention to detail and commitment to quality is unmatched in the industry.",
-    image: "/placeholder.svg?height=100&width=100",
+    image: "https://res.cloudinary.com/dvu5gqlxn/image/upload/v1744070686/samples/man-on-a-street.jpg",
   },
   {
     id: 2,
@@ -57,7 +55,7 @@ const testimonials = [
     rating: 4.5,
     review:
       "We hired BongBaba for our home renovation and couldn't be happier with the results. Professional team, timely delivery, and excellent craftsmanship.",
-    image: "/placeholder.svg?height=100&width=100",
+    image: "https://res.cloudinary.com/dvu5gqlxn/image/upload/v1744122784/pexels-julia-m-cameron-4145352_zqzqli.jpg",
   },
   {
     id: 3,
@@ -66,16 +64,16 @@ const testimonials = [
     rating: 5,
     review:
       "Working with BongBaba on our office complex was a seamless experience. Their expertise in commercial construction is truly remarkable.",
-    image: "/placeholder.svg?height=100&width=100",
+    image: "https://res.cloudinary.com/dvu5gqlxn/image/upload/v1744070685/samples/smile.jpg",
   },
   {
     id: 4,
-    name: "Sunita Verma",
+    name: "Sunita williams",
     position: "Interior Designer",
     rating: 4.5,
     review:
       "As an interior designer, I've collaborated with many construction companies, but BongBaba stands out for their precision and collaborative approach.",
-    image: "/placeholder.svg?height=100&width=100",
+    image: "https://res.cloudinary.com/dvu5gqlxn/image/upload/v1744070687/cld-sample.jpg",
   },
 ]
 
@@ -101,8 +99,8 @@ const StarRating = ({ rating }) => {
 const ServiceCard = ({ title, description, icon }) => {
   return (
     <motion.div
-      whileHover={{ y: -10, boxShadow: "0 10px 25px rgba(0, 0, 0, 0.1)" }}
-      className="bg-white p-6 rounded-lg shadow-md flex flex-col items-center text-center h-full"
+      // whileHover={{ y: -10, boxShadow: "0 10px 25px rgba(0, 0, 0, 0.1)" }}
+      className="bg-white p-6 shadow-md flex flex-col items-center text-center h-full"
     >
       <div className="text-4xl mb-4">{icon}</div>
       <h3 className="text-xl font-bold text-[#222222] mb-3">{title}</h3>
@@ -185,7 +183,7 @@ export default function About() {
         <div className="absolute inset-0 z-0">
           <div
             className="absolute inset-0 bg-cover bg-center opacity-20"
-            style={{ backgroundImage: "url('/placeholder.svg?height=1080&width=1920')" }}
+            style={{ backgroundImage: "url('https://res.cloudinary.com/dvu5gqlxn/image/upload/v1744121481/pexels-aadil-5417957_fsqikk.jpg')" }}
           ></div>
         </div>
 
@@ -195,7 +193,7 @@ export default function About() {
         >
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-5xl font-bold mb-6">
-              About <span className="text-[#FF9A00]">BongBaba Academy</span>
+              About <span className="text-[#FF9A00]">Oul corporation</span>
             </h2>
             <div className="w-20 h-1 bg-[#FF9A00] mx-auto mb-8"></div>
             <p className="text-lg md:text-xl mb-8 leading-relaxed">
